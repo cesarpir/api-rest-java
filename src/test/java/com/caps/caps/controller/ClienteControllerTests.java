@@ -16,6 +16,7 @@ import java.util.List;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
@@ -40,7 +41,8 @@ public class ClienteControllerTests {
         List<Cliente> clienteList = List.of(cliente);
         when(service.listClientes()).thenReturn(clienteList);
         this.mockMvc.perform(get("/v1/clientes"))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+        .andExpect(content().json("[{'id':0,'name':'CESAR ALEXANDRE','document':'19173686800'}]"));
     }
 
 }

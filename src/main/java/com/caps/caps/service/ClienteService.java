@@ -24,11 +24,11 @@ public class ClienteService {
     }
 
     public Cliente insertCliente(ClienteSchema request) {
-        return repository.save(schemaMapper.convert(request));
+        return repository.save(schemaMapper.INSTANCE.convert(request));
     }
 
     public Cliente updateCliente(ClienteSchema request) {
-        return repository.save(schemaMapper.convert(request));
+        return repository.save(schemaMapper.INSTANCE.convert(request));
     }
 
     public void deleteCliente(Long idCliente) {

@@ -31,12 +31,12 @@ public class ClienteController {
     @GetMapping
     @ResponseBody
     public List<ClienteSchema> getListAll() {
-        return service.listClientes().stream().map(schemaMapper::convert).collect(Collectors.toList());
+        return service.listClientes().stream().map(schemaMapper.INSTANCE::convert).collect(Collectors.toList());
     }
 
     @PostMapping
     public ClienteSchema insertCliente(@Valid @RequestBody ClienteSchema request) {
-        return schemaMapper.convert(service.insertCliente(request));
+        return schemaMapper.INSTANCE.convert(service.insertCliente(request));
     }
 
     @PutMapping("/{id}")
@@ -46,7 +46,7 @@ public class ClienteController {
             request = new ClienteSchema();
         }
         request.setId(id);
-        return schemaMapper.convert(service.updateCliente(request));
+        return schemaMapper.INSTANCE.convert(service.updateCliente(request));
     }
 
     @DeleteMapping("/{id}")
